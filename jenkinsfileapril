@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+    tools {
+        maven "maven_3.9.6"
+    }
+
+    environment {
+        WORKSPACE = "${JENKINS_HOME}/your-jenkins-job-directory"
+        DOCKERHUB_CREDENTIALS = "DJDJDJSLJDLJL"
+    }
+
+    stages {
+        stage('SCM Checkout') {
+            steps {
+                script {
+                    // Git checkout step without credentials
+                    git branch: 'development', credentialsId: '042c1e7c-917b-49f8-9825-01f46d13855e', url: 'https://github.com/IBM-batch/maven-web-application.git'
+                }
+            }
+        }
+
+        
+    }
+}
