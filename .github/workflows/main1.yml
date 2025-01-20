@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  # Triggers the workflow on push or pull request events but only for the "master" branch
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    # Specify the correct runner label
+    runs-on: self-hosted  # Replace this with your runner label (e.g., self-hosted, custom-label)
+
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Run a single command
+      - name: Print a message
+        run: echo "Hello, world!"
+
+      # Run multiple commands
+      - name: Run a script
+        run: |
+          echo "Building the project..."
+          echo "This is a multi-line script."
