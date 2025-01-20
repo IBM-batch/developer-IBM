@@ -1,0 +1,40 @@
+name: Self-Hosted Runner Test
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: self-hosted  # Ensure this matches the label assigned to your self-hosted runner
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Print system info
+        run: |
+          echo "Runner is working!"
+          echo "OS Details:"
+          uname -a
+
+      - name: List files in workspace
+        run: |
+          echo "Listing files in the workspace:"
+          ls -al
+
+      - name: Print GitHub Actions environment variables
+        run: |
+          echo "Environment variables:"
+          env
+
+      - name: Verify Node.js installation
+        run: |
+          echo "Checking if Node.js is installed:"
+          node --version || echo "Node.js not found"
+
+      - name: Verify Docker installation
+        run: |
+          echo "Checking if Docker is installed:"
+          docker --version || echo "Docker not found"
